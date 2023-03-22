@@ -1,7 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 main {
     background-color: rgb(12, 12, 97);
 }
 
 h1.h1 {
     color: rgb(0, 157, 219) !important;
+}
+
+.card.my-card {
+    gap: 15px;
+}
+
+.card .todo {
+    border-bottom: 1px solid lightgray;
+}
+
+.my-btn {
+    height: 24px;
+    line-height: 24px;
+    aspect-ratio: 1;
+    background-color: red;
+    color: white;
+}
+
+.done {
+    text-decoration: line-through;
 }

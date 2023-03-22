@@ -1,6 +1,6 @@
 <?php
 
-include_once './todos.php';
+include_once './server.php';
 
 ?>
 
@@ -21,9 +21,14 @@ include_once './todos.php';
     <div id="app">
         <main class="vh-100">
             <div class="container d-flex flex-column">
+
                 <h1 class="h1 text-center mb-5">{{title}}</h1>
-                <div class="card col-6 mx-auto d-flex flex-column mb-3">
-                    
+
+                <div class="card my-card col-6 mx-auto d-flex flex-column mb-3">
+                    <div v-for="(todo, i) in todos" :key=i class="todo d-flex" >
+                        <span class="col-11" :class="todo.done === true ? 'done' : ''">{{todo.text}}</span>
+                        <button class="my-btn">E</button>
+                    </div>
                 </div>
 
                 <div class="col-6 mx-auto mb-3 row">
@@ -47,12 +52,22 @@ include_once './todos.php';
             }
         },
         methods: {
-            fetchTodos() {
-                axios.get('./todos.php')
+            fetchTodoList() {
+                axios.get('./server.php')
+                .then((res) => {
+                    console.log(res.data)
+                    this.todos = res.data
+                    console.log(this.todos)
+                })
+                .catch((err) => {
+                    console.log(err)
+                    this.todos = []
+                })
+
             }
         },
         mounted() {
-            this.fetchTodos()
+            this.fetchTodoList()
         }
     }).mount('#app')
     </script>

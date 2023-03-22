@@ -15,11 +15,11 @@ $todos = [
     ],
     [
         'text' => 'debug',
-        'done' => false,
+        'done' => true,
     ],
     [
         'text' => 'refactor',
-        'done' => false,
+        'done' => true,
     ]
 ];
 
