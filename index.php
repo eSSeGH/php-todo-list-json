@@ -1,9 +1,3 @@
-<?php
-
-include_once './server.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +27,9 @@ include_once './server.php';
 
                 <div class="col-6 mx-auto my-3 row">
                     <div class="col-10 ms-0 ps-0">
-                        <input type="text" class="form-control" id="inputText" placeholder="Inserisci una nuova task...">
+                        <input v-model="newTodo.text" type="text" class="form-control" id="inputText" placeholder="Inserisci una nuova task...">
                     </div>
-                    <button class="btn btn-warning col-2">Inserisci</button>
+                    <button @click="addTodo" class="btn btn-warning col-2">Inserisci</button>
                 </div>
             </div>
         </main>
@@ -49,6 +43,10 @@ include_once './server.php';
             return {
                 title: 'ToDo List',
                 todos:[],
+                newTodo: {
+                    text: '',
+                    done: false,
+                }
             }
         },
         methods: {
@@ -64,6 +62,9 @@ include_once './server.php';
                     this.todos = []
                 })
 
+            },
+            addTodo() {
+                this.todos.push(this.newTodo)
             }
         },
         mounted() {
