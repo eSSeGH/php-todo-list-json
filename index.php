@@ -1,17 +1,6 @@
 <?php
 
-$todos = [
-    'creare la repo',
-    'impostare il layout',
-    'riempire con i contenuti',
-    'debug',
-    'refactor',
-    'pushareeeee',
-];
-
-header('Content_Type: application/json');
-
-echo json_encode($todos);
+include_once './todos.php';
 
 ?>
 
@@ -23,6 +12,7 @@ echo json_encode($todos);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Todo List Json</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
@@ -31,8 +21,8 @@ echo json_encode($todos);
     <div id="app">
         <main class="vh-100">
             <div class="container d-flex flex-column">
-                <h1 class="h1 text-center">Todo List</h1>
-                <div class="card col-6 mx-auto d-flex flex-column">
+                <h1 class="h1 text-center mb-5">{{title}}</h1>
+                <div class="card col-6 mx-auto d-flex flex-column mb-3">
                     
                 </div>
 
@@ -51,9 +41,18 @@ echo json_encode($todos);
 
     createApp({
         data() {
-        return {
-            message: 'Hello Vue!'
-        }
+            return {
+                title: 'ToDo List',
+                todos:[],
+            }
+        },
+        methods: {
+            fetchTodos() {
+                axios.get('./todos.php')
+            }
+        },
+        mounted() {
+            this.fetchTodos()
         }
     }).mount('#app')
     </script>

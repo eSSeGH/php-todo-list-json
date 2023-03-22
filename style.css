@@ -2,6 +2,6 @@ main {
     background-color: rgb(12, 12, 97);
 }
 
-.h1 {
-    color: gray;
+h1.h1 {
+    color: rgb(0, 157, 219) !important;
 }
