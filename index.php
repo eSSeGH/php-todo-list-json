@@ -24,15 +24,15 @@ include_once './server.php';
 
                 <h1 class="h1 text-center mb-5">{{title}}</h1>
 
-                <div class="card my-card col-6 mx-auto d-flex flex-column mb-3">
-                    <div v-for="(todo, i) in todos" :key=i class="todo d-flex" >
+                <ul class="list-group my-card col-6 mx-auto">
+                    <li class="list-group-item todo d-flex" v-for="(todo, i) in todos" :key=i>
                         <span class="col-11" :class="todo.done === true ? 'done' : ''">{{todo.text}}</span>
                         <button class="my-btn">E</button>
-                    </div>
-                </div>
+                    </li>
+                </ul>
 
-                <div class="col-6 mx-auto mb-3 row">
-                    <div class="col-10">
+                <div class="col-6 mx-auto my-3 row">
+                    <div class="col-10 ms-0 ps-0">
                         <input type="text" class="form-control" id="inputText" placeholder="Inserisci una nuova task...">
                     </div>
                     <button class="btn btn-warning col-2">Inserisci</button>
