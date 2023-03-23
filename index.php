@@ -27,7 +27,7 @@
 
                 <div class="col-6 mx-auto my-3 row">
                     <div class="col-10 ms-0 ps-0">
-                        <input v-model="newTodo.text" type="text" class="form-control" id="inputText" placeholder="Inserisci una nuova task...">
+                        <input v-model="newTodo" type="text" class="form-control" id="inputText" placeholder="Inserisci una nuova task...">
                     </div>
                     <button @click="addTodo" class="btn btn-warning col-2">Inserisci</button>
                 </div>
@@ -43,15 +43,12 @@
             return {
                 title: 'ToDo List',
                 todos:[],
-                newTodo: {
-                    text: '',
-                    done: false,
-                }
+                newTodo: '',
             }
         },
         methods: {
             fetchTodoList() {
-                axios.get('./todos.json')
+                axios.get('./server.php')
                 .then((res) => {
                     console.log(res.data)
                     this.todos = res.data
@@ -64,7 +61,25 @@
 
             },
             addTodo() {
-                this.todos.push(this.newTodo)
+
+                if (!this.newTodo.trim()) {
+                    return
+                }
+
+                let data = {
+                    newTodoText: this.newTodo.trim()
+                }
+
+                axios.post('./server.php', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }).then((res) => {
+                    const {data} = res
+                    this.todos = data
+
+                    this.newTodo = ''
+                })
             }
         },
         mounted() {
