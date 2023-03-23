@@ -51,7 +51,7 @@
         },
         methods: {
             fetchTodoList() {
-                axios.get('./server.php')
+                axios.get('./todos.json')
                 .then((res) => {
                     console.log(res.data)
                     this.todos = res.data

@@ -23,8 +23,8 @@ $todos = [
     ]
 ];
 
-header('Content_Type: application/json');
+$todos_json = json_encode($todos);
 
-echo json_encode($todos);
+file_put_contents('./todos.json', $todos_json);
 
 ?>
